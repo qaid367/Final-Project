@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow-y: auto;
+  font-family: "Poppins" !important;
+  background-color: #fdf0d5;
+}
+
+.nav-parent {
+  z-index: 99;
+  position: sticky;
+  top: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  justify-content: space-between;
+  overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* margin-top: 10px; */
+  /* background-color: transparent; */
+  color: black !important;
+}
+
+.nav-content {
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); */
+  background-color: transparent;
+  width: 100% !important;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: max-content;
+  gap: 10px;
+}
+
+.nav-content a {
+  padding: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  font-size: x-large;
+  cursor: pointer;
+  color: black;
+}
+
+.logo {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 35px;
+  letter-spacing: -1px;
+}
+
+.logo img {
+  width: 55px;
+}
+
+#signOut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* outline-color: red;
+  outline-width: 4px;
+  outline-style: solid; */
+  text-decoration: none;
+  transition: all 0.5s ease;
+  width: 120px;
+  font-size: large;
+  cursor: pointer;
+  color: black;
+  font-family: inherit !important;
+  background-color: transparent;
+  border: none;
+}
+
+#signOut img {
+  width: 15px;
+  margin-left: 10px;
+}
+
+.nav a:hover {
+  font-size: 20px;
+  background-color: #fdf0d5 !important;
+}
+
+#signOut:hover {
+  /* outline-color: rgb(174, 1, 1) !important; */
+}
+
+.current {
+  opacity: 0.5;
+}
+
+.content,
+.nav-parent {
+  animation: fadeIn 1s forwards;
+}
+
+.nav a:visited {
+  color: inherit;
+}

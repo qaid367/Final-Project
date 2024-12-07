@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/Navbar.css" />
+    <link rel="stylesheet" href="./css/Register.css" />
+    <script type="module" src="./js/Register.js" defer></script>
+    <script type="module">
+      import { submitForm } from "./js/Register.js";
+
+      document.querySelector("form").addEventListener("submit", submitForm);
+    </script>
+    <script>
+      function togglePassword(event) {
+        const passwordElement = document.getElementById("passwordInput");
+        if (event.checked) {
+          passwordElement.type = "text";
+        } else {
+          passwordElement.type = "password";
+        }
+      }
+    </script>
+    <title>Todoist | Registeration Page</title>
+  </head>
+  <body>
+    <header id="logo">
+      <img src="./images/icon.png" alt="Icon png" />
+      <h1>Todoist</h1>
+    </header>
+    <form>
+      <h2 style="color: rgba(0, 0, 0, 0.7); text-align: center">Sign Up</h2>
+      <div class="inputs">
+        <input type="text" placeholder="Full name" id="usernameInput" />
+        <input type="email" placeholder="Email" id="emailInput" />
+        <div
+          id="passwordDiv"
+          style="display: flex; flex-direction: column; justify-content: center"
+        >
+          <input type="password" placeholder="Password" id="passwordInput" />
+          <div style="margin-top: 5px">
+            <input
+              onchange="togglePassword(this)"
+              type="checkbox"
+              name="passwordVisible"
+              id="passwordVisible"
+            />
+            <label for="passwordVisible">Show Password</label>
+          </div>
+        </div>
+      </div>
+      <input
+        style="font-size: x-large"
+        id="submitBtn"
+        type="submit"
+        value="Submit"
+      />
+    </form>
+  </body>
+</html>
