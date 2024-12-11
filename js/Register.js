@@ -1,11 +1,40 @@
-import { getDb, insertDb, updateDb } from "./Utils.js";
+import {
+  getDb,
+  insertDb,
+  validatePassword,
+  validateUsername,
+  validateToken,
+  generateToken,
+  alertMessage,
+} from "./Utils.js";
 
-const db = getDb();
+let db = getDb();
 
 async function submitForm(event) {
   event.preventDefault();
   const formData = new FormData(event.target);
-  console.log(formData)
+  const { username, email, password } = {
+    username: formData.get("username"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+  const avatarBase = sessionStorage.getItem("avatarBase");
+  let token = generateToken(password.length + Math.floor(Math.random() + 10));
+  try {
+    validatePassword(password);
+    validateUsername(username);
+    while (validateToken(token)) {
+      token = generateToken(password.length + Math.floor(Math.random() + 10));
+    }
+    localStorage.setItem("token", token);
+    alertMessage("Success!", "#4371f0");
+    db = insertDb({ username, email, password, avatarBase, token });
+    setTimeout(() => {
+      window.location.href = "/profile.html";
+    }, 1500);
+  } catch (e) {
+    alertMessage(e.message, "#ff4f4f");
+  }
 }
 
 export { submitForm };

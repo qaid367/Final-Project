@@ -1,12 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/Navbar.css" />
+    <link rel="stylesheet" href="./css/Profile.css" />
+    <script type="module" src="./js/Profile.js" defer></script>
     <title>Profile</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="nav-parent">
+      <div class="logo">
+        <img src="./images/icon.png" alt="Logo" />
+        <header>Todoist</header>
+      </div>
+      <div class="nav-content">
+        <a href="index.html">Home</a>
+        <a href="todos.html">Todos</a>
+        <a id="original" class="current">Profile</a>
+      </div>
+      <button id="signOut" href="signout.html">
+        <p>Sign Out</p>
+        <img width=15px" src="./images/signOut.svg" alt="Sign Out Icon" />
+      </button>
+    </div>
+    <!-- End Navbar -->
+
+    <div class="hidden" id="container">
+      <div class="avatar">
+        <img id="avatar" src="" alt="Avatar Icon" />
+      </div>
+      <header>
+        <h1 id="username">Username</h1>
+      </header>
+      <section class="accountInfo">
+        <div class="email">
+          <h2>Email:</h2>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div class="password">
+          <h2>Password:</h2>
+          <div class="input">
+            <i class="fa-solid fa-eye hidden"></i>
+            <i class="fa-solid fa-eye-slash"></i>
+            <input type="password" name="password" id="password" />
+          </div>
+        </div>
+      </section>
+      <section class="info">
+        <div class="big">
+          <h3 id="everTotal">Ever Total: 0</h3>
+          <h3 id="currentTotal">Current Total: 0</h3>
+        </div>
+        <hr />
+        <div class="small">
+          <h4 id="deletedCount">Deleted Count: 0</h4>
+          <h4 id="updatedCount">Updated Count: 0</h4>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>

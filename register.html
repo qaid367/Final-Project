@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/Navbar.css" />
     <link rel="stylesheet" href="./css/Register.css" />
+
     <script type="module" src="./js/Register.js" defer></script>
     <script type="module">
       import { submitForm } from "./js/Register.js";
@@ -21,6 +22,26 @@
           passwordElement.type = "password";
         }
       }
+
+      function previewAvatar(event) {
+        const input = event;
+        const file = input.files[0];
+        if (file.type.split("/")[0] != "image") {
+          alert("Invalid image inputted!");
+          return;
+        }
+        const previewAvatarElement =
+          document.getElementById("avatarImgElement");
+
+        if (file) {
+          const fileReader = new FileReader();
+          fileReader.onload = () => {
+            previewAvatarElement.src = fileReader.result;
+            sessionStorage.setItem("avatarBase", fileReader.result);
+          };
+          fileReader.readAsDataURL(file);
+        }
+      }
     </script>
     <title>Todoist | Registeration Page</title>
   </head>
@@ -32,13 +53,63 @@
     <form>
       <h2 style="color: rgba(0, 0, 0, 0.7); text-align: center">Sign Up</h2>
       <div class="inputs">
-        <input type="text" placeholder="Full name" id="usernameInput" />
-        <input type="email" placeholder="Email" id="emailInput" />
+        <div
+          class="image"
+          style="display: flex; flex-direction: column; align-items: center"
+        >
+          <label for="avatarInput">
+            <div class="imagehover">
+              <div
+                class="profileImage"
+                style="
+                  position: absolute;
+                  background-color: black;
+                  opacity: 0.5 !important;
+                "
+              ></div>
+              <img
+                src="./images/draw_2.svg"
+                alt="draw icon"
+                style="
+                  z-index: 99;
+                  position: absolute;
+                  margin-top: 19px;
+                  width: 40px;
+                "
+              />
+            </div>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPlwkUTsaWA_zSj0oFI7sbKYXqs-ih3b0_Bg&s"
+              alt="profile"
+              id="avatarImgElement"
+              class="profileImage"
+            />
+          </label>
+          <input
+            type="file"
+            name="avatar"
+            id="avatarInput"
+            oninput="previewAvatar(this)"
+            style="position: absolute; opacity: 0; width: 75px"
+          />
+        </div>
+        <input
+          type="text"
+          name="username"
+          placeholder="Full name"
+          id="usernameInput"
+        />
+        <input type="email" name="email" placeholder="Email" id="emailInput" />
         <div
           id="passwordDiv"
           style="display: flex; flex-direction: column; justify-content: center"
         >
-          <input type="password" placeholder="Password" id="passwordInput" />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            id="passwordInput"
+          />
           <div style="margin-top: 5px">
             <input
               onchange="togglePassword(this)"
