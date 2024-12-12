@@ -33,7 +33,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .accountInfo {
@@ -78,4 +78,40 @@ hr {
   box-shadow: 0;
   border: none;
   border-top: 2px solid red;
+}
+
+i {
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  padding: 5px;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  letter-spacing: -0.15px;
+  transition: 0.2s all ease-in-out;
+  color: white;
+}
+
+button:hover {
+  transform: scale(1.01);
+}
+
+#deleteBtn {
+  background-color: rgb(255, 71, 71);
+}
+
+#editBtn {
+  background-color: rgb(25, 121, 255);
 }

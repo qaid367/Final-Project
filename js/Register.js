@@ -21,8 +21,18 @@ async function submitForm(event) {
   const avatarBase = sessionStorage.getItem("avatarBase");
   let token = generateToken(password.length + Math.floor(Math.random() + 10));
   try {
-    validatePassword(password);
-    validateUsername(username);
+    if (!validatePassword(password)) {
+      return alertMessage(
+        "Password must contain a capital and lowercase letter, a symbol, and at least 1 digit.",
+        "red"
+      );
+    }
+    if (!validateUsername(username)) {
+      return alertMessage(
+        "Username already been taken or the length is between 4 & 30 characters.",
+        "red"
+      );
+    }
     while (validateToken(token)) {
       token = generateToken(password.length + Math.floor(Math.random() + 10));
     }

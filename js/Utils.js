@@ -28,8 +28,11 @@ function insertDb(data) {
   return updateDb(db);
 }
 
-// Returns an account(S) depending on the field and query values
-function findDb(field, query) {
+// Returns an account(S) depending on the fields and search values
+function findDb(fields, querys) {
+  if (fields.length != querys.length) {
+    throw new Error("Fields array length must be the same length as querys");
+  }
   const db = getDb();
   if (!db) {
     return null;
@@ -38,8 +41,11 @@ function findDb(field, query) {
   const accounts = [];
 
   for (const account of db) {
-    if (account[field] == query) {
-      accounts.push(account);
+    for (let i = 0; i < fields.length; i++) {
+      const field = fields[i];
+      if (account[field] == querys[i]) {
+        accounts.push(account);
+      }
     }
   }
   return accounts;
@@ -72,6 +78,8 @@ function removeExtraSpaces(str) {
 
 function validateUsername(str) {
   str = removeExtraSpaces(str);
+  const accounts = findDb(["username"], [str]);
+  if (accounts) return false;
   return str.length < 4 || str.length > 30;
 }
 
@@ -127,7 +135,7 @@ function editAccount(index, field, value) {
 function validateToken(token) {
   const db = getDb();
   // Checks if account exist with token already!
-  if (findDb("token", token)) {
+  if (findDb(["token"], [token])) {
     return false;
   }
   return true;
@@ -139,6 +147,7 @@ function alertMessage(str, color) {
   }
   const div = document.createElement("div");
   div.style.backgroundColor = color;
+  div.style.marginTop = "10px";
   div.id = "alertMessage";
   const messageElement = document.createElement("h1");
   messageElement.id = "alertContent";

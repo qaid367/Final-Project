@@ -12,7 +12,27 @@
     />
     <link rel="stylesheet" href="./css/Navbar.css" />
     <link rel="stylesheet" href="./css/Profile.css" />
+    <script src="/js/Navbar.js" defer></script>
     <script type="module" src="./js/Profile.js" defer></script>
+    <script>
+      function showPassword(event) {
+        const id = event.id;
+        const passwordElement = document.getElementById("password");
+        if (id == "show") {
+          // Element is gonna be hidden
+          passwordElement.type = "password";
+          const hideIcon = document.getElementById("hide");
+          event.classList.add("hidden");
+          hideIcon.classList.remove("hidden");
+        } else {
+          // Element is gonna be shown
+          passwordElement.type = "text";
+          const showIcon = document.getElementById("show");
+          event.classList.add("hidden");
+          showIcon.classList.remove("hidden");
+        }
+      }
+    </script>
     <title>Profile</title>
   </head>
   <body>
@@ -48,9 +68,20 @@
         </div>
         <div class="password">
           <h2>Password:</h2>
-          <div class="input">
-            <i class="fa-solid fa-eye hidden"></i>
-            <i class="fa-solid fa-eye-slash"></i>
+          <div
+            class="input"
+            style="display: flex; align-items: center; gap: 10px"
+          >
+            <i
+              id="show"
+              onclick="showPassword(this)"
+              class="fa-solid fa-eye hidden"
+            ></i>
+            <i
+              id="hide"
+              onclick="showPassword(this)"
+              class="fa-solid fa-eye-slash"
+            ></i>
             <input type="password" name="password" id="password" />
           </div>
         </div>
@@ -65,6 +96,10 @@
           <h4 id="deletedCount">Deleted Count: 0</h4>
           <h4 id="updatedCount">Updated Count: 0</h4>
         </div>
+      </section>
+      <section class="buttons">
+        <button id="deleteBtn">Delete Account</button>
+        <button id="editBtn">Edit Profile</button>
       </section>
     </div>
   </body>
