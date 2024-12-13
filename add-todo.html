@@ -4,9 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/Navbar.css" />
-    <link rel="stylesheet" href="./css/Todo.css" />
+    <link rel="stylesheet" href="./css/Todos.css" />
     <script type="module" src="./js/Add-todo.js" defer></script>
     <script type="module" src="./js/Navbar.js" defer></script>
+    <script type="module">
+      import { submitTodo } from "./js/Add-todo.js";
+      document.querySelector("form").addEventListener("submit", submitTodo);
+    </script>
     <title>Add Todos | Todoist</title>
   </head>
   <body>
@@ -28,5 +32,47 @@
       </button>
     </div>
     <!-- End Navbar -->
+    <main>
+      <header
+        style="
+          display: flex;
+          margin: 0 auto;
+          flex-direction: column;
+          text-align: center;
+          margin-bottom: 20px;
+        "
+      >
+        <h1>Adding Todos</h1>
+        <p>
+          Put a header for the todo then followed by a description. Headers &
+          descriptions both do have a character limit!
+        </p>
+      </header>
+      <form class="todo-list">
+        <div class="todo-item">
+          <input
+            name="header"
+            class="todoHeader"
+            id="todoHeader"
+            placeholder="Todo Header"
+          />
+          <textarea
+            name="description"
+            placeholder="Todo Description"
+            class="todoDescription"
+            style="padding: 5px"
+          ></textarea>
+          <div class="todo-actions">
+            <button
+              type="submit"
+              style="background-color: rgb(1, 193, 1); color: white"
+              class="create-todo"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
   </body>
 </html>

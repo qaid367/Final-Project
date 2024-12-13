@@ -30,16 +30,38 @@ main {
   gap: 10px;
 }
 
-.todo-item h2 {
+.todoHeader {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
   color: #333;
+  font-family: inherit;
+  border-bottom: 2px solid rgb(109, 109, 109);
+  width: auto;
 }
 
-.todo-item p {
+.todoDescription {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1rem !important;
   color: #666;
+  font-family: inherit;
+  border-bottom: 2px solid rgb(0, 0, 0);
+  width: auto;
+}
+
+.todoHeader:read-only {
+  margin: 0;
+  font-size: 1.5rem !important;
+  color: #333;
+  font-family: inherit;
+  border: none;
+}
+
+.todoDescription:read-only {
+  margin: 0;
+  font-size: 1rem !important;
+  color: #666;
+  font-family: inherit;
+  border: none;
 }
 
 .todo-date {
@@ -81,4 +103,31 @@ main {
 
 .todo-actions .delete-todo:hover {
   background-color: #a71d2a;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+#submitBtn {
+  background-color: green;
+  color: white;
+}
+
+.add-todo-header {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.add-todo-header a {
+  color: green;
+  opacity: 0.8;
+}
+
+.add-todo-header a:hover {
+  color: gray;
+  
 }

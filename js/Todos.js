@@ -6,6 +6,7 @@ import {
   createTodo,
   getIndexes,
   deleteTodo,
+  updateDb,
 } from "./Utils.js";
 
 const token = localStorage.getItem("token");
@@ -42,11 +43,19 @@ function createTodos(todos) {
     const todoItem = document.createElement("div");
     todoItem.classList.add("todo-item");
     todoItem.setAttribute("data-id", todo.id);
-    const todoTitle = document.createElement("h2");
-    todoTitle.textContent = todo.title;
+    const todoTitle = document.createElement("input");
+    todoTitle.classList.add("todoHeader");
+    todoTitle.placeholder = "Todo Header";
+    todoTitle.type = "text";
+    todoTitle.readOnly = true;
+    todoTitle.value = todo.title;
 
-    const todoDescription = document.createElement("p");
-    todoDescription.textContent = todo.description;
+    const todoDescription = document.createElement("input");
+    todoDescription.classList.add("todoDescription");
+    todoDescription.type = "text";
+    todoDescription.readOnly = true;
+    todoDescription.placeholder = "Todo Description";
+    todoDescription.value = todo.description;
     const todoCreatedAt = document.createElement("span");
     todoCreatedAt.classList.add("todo-date");
     todoCreatedAt.textContent = `Created on: ${new Date(
@@ -59,6 +68,7 @@ function createTodos(todos) {
     const editButton = document.createElement("button");
     editButton.classList.add("edit-todo");
     editButton.textContent = "Edit";
+    editButton.id = "editBtn";
     editButton.addEventListener("click", function () {
       editTodo(todo.id);
     });
@@ -66,6 +76,7 @@ function createTodos(todos) {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-todo");
     deleteButton.textContent = "Delete";
+    deleteButton.id = "deleteBtn";
     deleteButton.addEventListener("click", () => {
       docDeleteTodo(todo.id);
     });
@@ -83,7 +94,78 @@ function createTodos(todos) {
 }
 
 function editTodo(id) {
-  console.log(id);
+  const editBtn = document.querySelector("#editBtn");
+  const deleteBtn = document.querySelector("#deleteBtn");
+  deleteBtn.style.display = "none";
+  editBtn.style.display = "none";
+
+  const todoDivElement = document.querySelector(`div[data-id="${id}"]`);
+  const todoActions = todoDivElement.querySelector(".todo-actions");
+
+  const cancelBtn = document.createElement("button");
+  cancelBtn.textContent = "Cancel";
+  cancelBtn.id = "cancelBtn";
+  cancelBtn.addEventListener("click", function () {
+    resetEdit(todoDivElement);
+  });
+  const sumbitBtn = document.createElement("button");
+  sumbitBtn.id = "submitBtn";
+  sumbitBtn.textContent = "Submit";
+  sumbitBtn.classList.add("submit-btn");
+  sumbitBtn.addEventListener("click", function () {
+    submitEdits(todoDivElement);
+  });
+  todoActions.appendChild(sumbitBtn);
+  todoActions.appendChild(cancelBtn);
+  const todoHeader = todoDivElement.querySelector(".todoHeader");
+  const todoDesc = todoDivElement.querySelector(".todoDescription");
+  todoHeader.readOnly = false;
+  todoDesc.readOnly = false;
+}
+
+function resetEdit(todoDivElement) {
+  // User wishes to cancel the edit
+  const submitBtn = todoDivElement.querySelector("#submitBtn");
+  const cancelBtn = todoDivElement.querySelector("#cancelBtn");
+  submitBtn.remove();
+  cancelBtn.remove();
+  const editBtn = todoDivElement.querySelector("#editBtn");
+  const deleteBtn = todoDivElement.querySelector("#deleteBtn");
+  editBtn.style.display = "inline";
+  deleteBtn.style.display = "inline";
+
+  const todoHeader = todoDivElement.querySelector(".todoHeader");
+  todoHeader.readOnly = true;
+  todoHeader.value =
+    Todos[parseInt(todoDivElement.getAttribute("data-id"))].title;
+  const todoDesc = todoDivElement.querySelector(".todoDescription");
+  todoDesc.readOnly = true;
+  todoDesc.value =
+    Todos[parseInt(todoDivElement.getAttribute("data-id"))].description;
+}
+
+function submitEdits(todoDivElement) {
+  const todoDesc = todoDivElement.querySelector(".todoDescription");
+  const todoHeader = todoDivElement.querySelector(".todoHeader");
+  todoHeader.readOnly = true;
+  todoDesc.readOnly = true;
+
+  const submitBtn = todoDivElement.querySelector("#submitBtn");
+  const cancelBtn = todoDivElement.querySelector("#cancelBtn");
+  submitBtn.remove();
+  cancelBtn.remove();
+
+  const editBtn = todoDivElement.querySelector("#editBtn");
+  const deleteBtn = todoDivElement.querySelector("#deleteBtn");
+  editBtn.style.display = "inline";
+  deleteBtn.style.display = "inline";
+  account.Todos[parseInt(todoDivElement.getAttribute("data-id"))].title =
+    todoHeader.value;
+  account.Todos[parseInt(todoDivElement.getAttribute("data-id"))].description =
+    todoDesc.value;
+  db[index] = account;
+  db = updateDb(db);
+  console.log(db);
 }
 
 function docDeleteTodo(id) {
