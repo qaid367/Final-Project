@@ -115,3 +115,28 @@ button:hover {
 #editBtn {
   background-color: rgb(25, 121, 255);
 }
+
+#submitBtn {
+  background-color: rgb(8, 148, 10);
+}
+
+#submitBtn:disabled {
+  cursor: default !important;
+  background-color: rgb(138, 138, 138);
+}
+
+#submitBtn:disabled:hover {
+  transform: none;
+}
+
+#username {
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: larger;
+  width: 150px;
+}
+
+#username {
+  border-bottom: 2px solid red;
+}

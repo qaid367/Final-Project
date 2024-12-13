@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todos App</title>
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <script src="/js/Navbar.js" defer></script>
+    <link rel="stylesheet" href="/css/Navbar.css" />
+    <link rel="stylesheet" href="/css/Index.css" />
+    <script type="module" src="/js/Navbar.js" defer></script>
     <script type="module" src="/js/checkSession.js" defer></script>
   </head>
   <body>
@@ -15,7 +16,7 @@
         <img src="./images/icon.png" alt="Logo" />
         <header>Todoist</header>
       </div>
-      
+
       <div class="nav-content">
         <a id="original" class="current">Home</a>
         <a href="todos.html">Todos</a>
@@ -27,5 +28,37 @@
       </button>
     </div>
     <!-- End Navbar -->
+    <main>
+      <section class="introduction">
+        <h1>Welcome to Todoist!</h1>
+        <p>
+          Manage your tasks and stay organized with Todoist, your personal task
+          management app. Whether you need to keep track of daily errands, work
+          projects, or long-term goals, we've got you covered.
+        </p>
+      </section>
+
+      <section class="features">
+        <h2>How It Works</h2>
+        <ul>
+          <li>Log in to access your personalized dashboard.</li>
+          <li>Create, edit, and delete tasks with ease.</li>
+          <li>
+            Organize tasks by categories and prioritize what's most important.
+          </li>
+          <li>Track your progress and mark tasks as complete.</li>
+          <li>View and update your profile to make the app uniquely yours.</li>
+        </ul>
+      </section>
+
+      <section class="getting-started">
+        <h2>Get Started</h2>
+        <p>
+          Ready to take control of your tasks? Head over to the
+          <a href="todos.html">Todos</a> page to start adding tasks or visit
+          your <a href="profile.html">Profile</a> to customize your experience.
+        </p>
+      </section>
+    </main>
   </body>
 </html>

@@ -73,8 +73,8 @@
                 style="
                   z-index: 99;
                   position: absolute;
-                  margin-top: 19px;
-                  width: 40px;
+                  margin-top: 26px;
+                  width: 50px;
                 "
               />
             </div>
@@ -96,7 +96,7 @@
         <input
           type="text"
           name="username"
-          placeholder="Full name"
+          placeholder="Username"
           id="usernameInput"
         />
         <input type="email" name="email" placeholder="Email" id="emailInput" />
@@ -110,14 +110,24 @@
             name="password"
             id="passwordInput"
           />
-          <div style="margin-top: 5px">
+          <div
+            style="
+              margin-top: 5px;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 3px;
+            "
+          >
             <input
               onchange="togglePassword(this)"
               type="checkbox"
               name="passwordVisible"
               id="passwordVisible"
             />
-            <label for="passwordVisible">Show Password</label>
+            <label for="passwordVisible" style="opacity: 0.5; font-size: 15px"
+              >Show Password</label
+            >
           </div>
         </div>
       </div>
@@ -127,6 +137,18 @@
         type="submit"
         value="Submit"
       />
+      <a
+        style="
+          color: black;
+          opacity: 0.5;
+          text-decoration: none;
+          text-align: center;
+          margin-top: 5px;
+          font-size: small;
+        "
+        href="./login.html"
+        >Already have an account?</a
+      >
     </form>
   </body>
 </html>

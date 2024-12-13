@@ -14,10 +14,58 @@ function updateDb(dbObject) {
   return dbObject;
 }
 
+function createTodo(index, todo) {
+  const db = getDb();
+  const account = db[index];
+  if (!account) {
+    throw new Error("Account not found!");
+  }
+
+  if (!account.Todos) {
+    account["Todos"] = [todo];
+  } else {
+    account.Todos.push(todo);
+    updateDb(db);
+    return account;
+  }
+}
+
+function deleteTodo(index, id) {
+  let db = getDb();
+  const account = db[index];
+  if (!account) {
+    throw new Error("Account not found!");
+  }
+
+  if (!account.Todos) {
+    throw new Error("No todo found!");
+  }
+  const todo = account.Todos[id];
+  if (!todo) {
+    throw new Error("No todo found with index!");
+  }
+  account.Todos.splice(id, 1);
+  db = updateDb(db);
+  return db;
+}
+
 function setItem(key, value) {
   if (!key || !value) throw new Error("Invalid arguments!");
   localStorage.setItem(key, value);
   return value;
+}
+
+// Find the account based on the field and value
+function getIndexes(field, value) {
+  const db = getDb();
+  const indexes = [];
+  for (let i = 0; i < db.length; i++) {
+    const account = db[i];
+    if (account[field] == value) {
+      indexes.push(i);
+    }
+  }
+  return indexes.length > 0 ? indexes : -1;
 }
 
 function insertDb(data) {
@@ -76,11 +124,22 @@ function removeExtraSpaces(str) {
   return str.replace(/^\s+|\s+$/g, "");
 }
 
-function validateUsername(str) {
+function validateUsername(str, token) {
   str = removeExtraSpaces(str);
-  const accounts = findDb(["username"], [str]);
-  if (accounts) return false;
-  return str.length < 4 || str.length > 30;
+  // New account conditinal
+  if (!token) {
+    const accounts = findDb(["username"], [str]);
+    if (accounts.length > 0) return false;
+  } else {
+    // Account already exists
+    // Check if the found account isn't just the current user's
+    const account = findDb(["username"], [str])[0];
+    if (account) {
+      // Account was found
+      if (account.token != token) return false; // Account was a different account and not the current user's
+    }
+  }
+  return str.length > 4 && str.length < 15;
 }
 
 function validatePassword(str) {
@@ -110,21 +169,36 @@ function validatePassword(str) {
 
 // Gets the account's index of the database
 // Then gets the field and changes it with the value provided in the parameter
-function editAccount(index, field, value) {
+function editAccount(index, fields, values) {
+  console.log(fields, values);
+  if (fields.length != values.length) {
+    throw new Error("Fields and values array length must be equal!");
+  }
   const db = getDb();
   const account = db[index];
   if (!account) {
     throw new Error("Invalid index provided!");
   }
 
-  const validFields = ["username", "password", "email", "avatarBase"];
-  if (!validFields.includes(field)) {
-    throw new Error("Invalid field provided!");
+  const validFields = [
+    "username",
+    "password",
+    "email",
+    "avatarBase",
+    "token",
+    "Todos",
+  ];
+  for (const field of fields) {
+    if (!validFields.includes(field)) {
+      throw new Error(field + " is not a valid field option!");
+    }
   }
 
   try {
-    account[field] = value;
-    console.log(db);
+    for (let i = 0; i < fields.length; i++) {
+      const field = fields[i];
+      account[field] = values[i];
+    }
     updateDb(db);
     return account;
   } catch (e) {
@@ -170,4 +244,7 @@ export {
   removeExtraSpaces,
   generateToken,
   alertMessage,
+  getIndexes,
+  createTodo,
+  deleteTodo,
 };

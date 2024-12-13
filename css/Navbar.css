@@ -98,9 +98,9 @@ body {
   background-color: #fdf0d5 !important;
 }
 
-#signOut:hover {
-  /* outline-color: rgb(174, 1, 1) !important; */
-}
+/* #signOut:hover {
+  outline-color: rgb(174, 1, 1) !important;
+} */
 
 .current {
   opacity: 0.5;

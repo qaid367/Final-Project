@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/Navbar.css" />
+    <link rel="stylesheet" href="./css/Todos.css" />
+    <script type="module" src="./js/Todos.js" defer></script>
+    <script type="module" src="./js/Navbar.js" defer></script>
+    <title>All Todos | Todoist</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="nav-parent">
+      <div class="logo">
+        <img src="./images/icon.png" alt="Logo" />
+        <header>Todoist</header>
+      </div>
+
+      <div class="nav-content">
+        <a href="index.html">Home</a>
+        <a id="original" class="current">Todos</a>
+        <a href="profile.html">Profile</a>
+      </div>
+      <button id="signOut" href="signout.html">
+        <p>Sign Out</p>
+        <img width=15px" src="./images/signOut.svg" alt="Sign Out Icon" />
+      </button>
+    </div>
+    <!-- End Navbar -->
+    <main>
+      <section class="todos">
+        <h1>Your Todos</h1>
+
+        <div class="todo-list">
+          <!-- Example Todo -->
+          <div class="todo-item" data-id="1">
+            <h2>Buy groceries</h2>
+            <p>Remember to buy milk, eggs, and bread.</p>
+            <span class="todo-date">Created on: 12/1/2024</span>
+            <div class="todo-actions">
+              <button class="edit-todo">Edit</button>
+              <button class="delete-todo">Delete</button>
+            </div>
+          </div>
+
+          <div class="todo-item" data-id="2">
+            <h2>Finish project</h2>
+            <p>Complete the Todoist app by next week.</p>
+            <div class="todo-actions">
+              <button class="edit-todo">Edit</button>
+              <button class="delete-todo">Delete</button>
+            </div>
+          </div>
+          <!-- Add more todos dynamically with JavaScript -->
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

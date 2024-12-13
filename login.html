@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Todoist</title>
+    <link rel="stylesheet" href="/css/Navbar.css" />
+    <link rel="stylesheet" href="/css/Login.css" />
+    <script type="module" src="./js/Login.js" defer></script>
+    <script type="module">
+      import { loginForm } from "./js/Login.js";
+
+      document.querySelector("form").addEventListener("submit", loginForm);
+    </script>
+    <script>
+      function togglePassword(event) {
+        const passwordElement = document.getElementById("passwordInput");
+        if (event.checked) {
+          passwordElement.type = "text";
+        } else {
+          passwordElement.type = "password";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header id="logo">
+      <img src="./images/icon.png" alt="Icon png" />
+      <h1>Todoist</h1>
+    </header>
+    <form>
+      <h2 style="color: rgba(0, 0, 0, 0.7); text-align: center">Login</h2>
+      <div class="inputs">
+        <input type="email" name="email" placeholder="Email" id="emailInput" />
+        <div
+          id="passwordDiv"
+          style="display: flex; flex-direction: column; justify-content: center"
+        >
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            id="passwordInput"
+          />
+          <div
+            style="
+              margin-top: 5px;
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              gap: 3px;
+            "
+          >
+            <input
+              onchange="togglePassword(this)"
+              type="checkbox"
+              name="passwordVisible"
+              id="passwordVisible"
+            />
+            <label for="passwordVisible" style="opacity: 0.5; font-size: 15px"
+              >Show Password</label
+            >
+          </div>
+        </div>
+      </div>
+      <input
+        style="font-size: x-large"
+        id="submitBtn"
+        type="submit"
+        value="Submit"
+      />
+      <a
+        style="
+          color: black;
+          opacity: 0.5;
+          text-decoration: none;
+          text-align: center;
+          margin-top: 5px;
+          font-size: small;
+        "
+        href="./register.html"
+        >Don't have an account?</a
+      >
+    </form>
+  </body>
+</html>

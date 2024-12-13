@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="./css/Profile.css" />
     <script src="/js/Navbar.js" defer></script>
     <script type="module" src="./js/Profile.js" defer></script>
+    <script type="module">
+      import { editProfile, submitEdit, deleteAccount } from "./js/Profile.js";
+
+      document.querySelector("#editBtn").addEventListener("click", editProfile);
+      document
+        .querySelector("#deleteBtn")
+        .addEventListener("click", deleteAccount);
+      document
+        .querySelector("#submitBtn")
+        .addEventListener("click", submitEdit);
+    </script>
     <script>
       function showPassword(event) {
         const id = event.id;
@@ -33,7 +44,7 @@
         }
       }
     </script>
-    <title>Profile</title>
+    <title>Profile | Todoist</title>
   </head>
   <body>
     <!-- Navbar -->
@@ -59,7 +70,13 @@
         <img id="avatar" src="" alt="Avatar Icon" />
       </div>
       <header>
-        <h1 id="username">Username</h1>
+        <input
+          id="username"
+          type="text"
+          value="Username"
+          maxlength="15"
+          minlength="4"
+        />
       </header>
       <section class="accountInfo">
         <div class="email">
@@ -100,6 +117,7 @@
       <section class="buttons">
         <button id="deleteBtn">Delete Account</button>
         <button id="editBtn">Edit Profile</button>
+        <button id="submitBtn" class="hidden">Submit Form</button>
       </section>
     </div>
   </body>
