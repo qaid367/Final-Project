@@ -20,7 +20,6 @@ try {
     document.querySelector("#container").classList.remove("hidden");
     document.querySelector("#container").classList.add("container");
     updateAccount(account);
-    console.log(account);
   }
 } catch (e) {
   console.error(e);
@@ -93,7 +92,6 @@ function submitEdit() {
 function deleteAccount() {
   const account = findDb(["token"], [token]);
   const index = getIndexes("token", token)[0];
-  console.log(account);
 
   if (!account || index == -1) {
     return alertMessage(

@@ -31,7 +31,6 @@ if (Todos.length < 1) {
   });
   Todos = account.Todos;
 }
-console.log(Todos);
 createTodos(Todos);
 
 function createTodos(todos) {
@@ -159,13 +158,13 @@ function submitEdits(todoDivElement) {
   const deleteBtn = todoDivElement.querySelector("#deleteBtn");
   editBtn.style.display = "inline";
   deleteBtn.style.display = "inline";
-  account.Todos[parseInt(todoDivElement.getAttribute("data-id"))].title =
-    todoHeader.value;
-  account.Todos[parseInt(todoDivElement.getAttribute("data-id"))].description =
-    todoDesc.value;
+  const todo = account.Todos.find(
+    (todo) => todo.id == parseInt(todoDivElement.getAttribute("data-id"))
+  );
+  todo.title = todoHeader.value;
+  todo.description = todoDesc.value;
   db[index] = account;
   db = updateDb(db);
-  console.log(db);
 }
 
 function docDeleteTodo(id) {

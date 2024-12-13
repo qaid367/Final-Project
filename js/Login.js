@@ -47,7 +47,6 @@ async function loginForm(event) {
       token = generateToken(password.length + Math.floor(Math.random() + 10));
     }
     // Edits the account's token with the new one!
-    console.log(account);
     editAccount(getIndexes("token", account.token)[0], ["token"], [token]);
     localStorage.setItem("token", token);
     alertMessage("Logged in! Redirecting to profile..", "#4371f0");

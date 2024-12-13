@@ -170,7 +170,6 @@ function validatePassword(str) {
 // Gets the account's index of the database
 // Then gets the field and changes it with the value provided in the parameter
 function editAccount(index, fields, values) {
-  console.log(fields, values);
   if (fields.length != values.length) {
     throw new Error("Fields and values array length must be equal!");
   }
