@@ -40,11 +40,11 @@ function deleteTodo(index, id) {
   if (!account.Todos) {
     throw new Error("No todo found!");
   }
-  const todo = account.Todos[id];
+  const todo = account.Todos.find((todo) => todo.id == id);
   if (!todo) {
     throw new Error("No todo found with index!");
   }
-  account.Todos.splice(id, 1);
+  account.Todos.splice(account.Todos.indexOf(todo), 1);
   db = updateDb(db);
   return db;
 }
